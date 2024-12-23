@@ -1,0 +1,26 @@
+{
+  "name": "emumba-stream-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/emumba-stream-app/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "emumba-stream-app:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "emumba-stream-app:build:development"
+        },
+        "production": {
+          "buildTarget": "emumba-stream-app:build:production"
+        }
+      }
+    }
+  }
+}

@@ -36,7 +36,11 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/node-todo-e2e/**/*"]
+      "exclude": [
+        "apps/node-todo-e2e/**/*",
+        "emumba-stream-e2e/**/*",
+        "apps/emumba-stream-app-e2e/**/*"
+      ]
     }
   ]
 }
