@@ -7,12 +7,16 @@ import {
   Patch,
   Delete,
   UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { TodoService } from './todo.service';
-import { Todo } from './todo.entity';
+import { Todo, TodoStatus } from './todo.entity';
 import { RolesGuard } from '../user/roles.guard';
 import { Roles } from '../user/roles.decorator';
+import { CreateTodoDto } from './todo.dto';
+import { StatusValidationPipe } from './todo.status.validator';
 
 @Controller('todos')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
@@ -33,17 +37,19 @@ export class TodoController {
 
   @Post()
   @Roles('Admin', 'User')
-  create(@Body() todo: Partial<Todo>): Promise<Todo> {
-    return this.todoService.create(todo);
+  @UsePipes(ValidationPipe)
+  create(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {
+    return this.todoService.create(createTodoDto);
   }
 
   @Patch(':id')
   @Roles('Admin')
+  @UsePipes(ValidationPipe)
   update(
     @Param('id') id: number,
-    @Body() updateData: Partial<Todo>
+    @Body('status', StatusValidationPipe) status: TodoStatus
   ): Promise<Todo> {
-    return this.todoService.update(+id, updateData);
+    return this.todoService.update(+id, { status });
   }
 
   @Delete(':id')
