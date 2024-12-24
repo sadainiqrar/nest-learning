@@ -5,10 +5,12 @@ import { TodoService } from './todo.service';
 import { TodoController } from './todo.controller';
 import { UserModule } from '../user/user.module';
 import { JwtStrategy } from '../user/jwt.strategy';
+import { WsJwtGuard } from '../user/socket.guard';
+import { TodoGateway } from '../websockets/todo.gateway';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Todo]), UserModule],
-  providers: [TodoService, JwtStrategy],
-  controllers: [TodoController],
+  providers: [TodoService, JwtStrategy, TodoGateway, WsJwtGuard],
+  controllers: [TodoController]
 })
 export class TodoModule {}
