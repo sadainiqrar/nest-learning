@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
+
+export enum TodoStatus {
+  PENDING = 'Pending',
+  IN_PROGRESS = 'In Progress',
+  COMPLETED = 'Completed',
+}
 
 @Entity()
 export class Todo {
@@ -11,6 +17,13 @@ export class Todo {
   @Column()
   description: string;
 
-  @Column({ default: false })
-  isCompleted: boolean;
+  @Column({
+    type: 'text',
+    enum: TodoStatus,
+    default: TodoStatus.PENDING,
+  })
+  status: TodoStatus;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }
