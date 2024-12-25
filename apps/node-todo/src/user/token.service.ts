@@ -6,7 +6,6 @@ export class TokenService {
   constructor(private readonly jwtService: JwtService) {}
 
   verifyToken(token: string) {
-    console.log('here', token)
     return this.jwtService.verify(token);
   }
 

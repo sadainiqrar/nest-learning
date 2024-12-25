@@ -4,6 +4,8 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { UserService } from './user.service';
 import { TokenService } from './token.service';
+import { JwtStrategy } from '../user/jwt.strategy';
+import { WsJwtGuard } from '../user/socket.guard';
 import { UserController } from './user.controller';
 import { User } from './user.entity';
 
@@ -15,8 +17,8 @@ import { User } from './user.entity';
       signOptions: { expiresIn: '1h' },
     }),
   ],
-  providers: [UserService, TokenService],
+  providers: [UserService, TokenService, JwtStrategy, WsJwtGuard],
   controllers: [UserController],
-  exports: [UserService, TokenService],
+  exports: [UserService, TokenService, JwtStrategy, WsJwtGuard],
 })
 export class UserModule {}

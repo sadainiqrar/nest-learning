@@ -7,7 +7,6 @@ export class WsJwtGuard implements CanActivate {
   constructor(private readonly tokenService: TokenService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    console.log('here here')
     const client: Socket = context.switchToWs().getClient<Socket>();
     const token = client.handshake.query.token as string;
 
@@ -18,6 +17,7 @@ export class WsJwtGuard implements CanActivate {
 
     try {
       const payload = await this.tokenService.verifyToken(token);
+      
       client.data.user = payload; // Attach the user data to the client
       return true;
     } catch (error) {

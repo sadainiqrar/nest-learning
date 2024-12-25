@@ -6,7 +6,6 @@ import { TodoGateway } from '../websockets/todo.gateway';
 
 @Injectable()
 export class TodoService {
-  private todoCache: Todo[] = []; // In-memory cache for todos
 
   constructor(
     @InjectRepository(Todo)
