@@ -8,7 +8,7 @@ import { TodoModule } from '../todo/todo.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'todo-db.sqlite',
+      database: './todo-db.sqlite',
       // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       autoLoadEntities: true,
       synchronize: true, // Note: Set `false` in production for better control over migrations

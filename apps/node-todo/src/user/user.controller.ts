@@ -24,7 +24,7 @@ export class UserController {
       properties: {
         username: { type: 'string', example: 'testuser' },
         password: { type: 'string', example: 'testpass' },
-        role: { type: 'string', enum: ['Admin', 'User'], example: 'User' },
+        role: { type: 'string', enum: ['Admin', 'User'], example: 'Admin' },
       },
     },
   })
