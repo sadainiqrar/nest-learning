@@ -20,15 +20,28 @@ npx nx build node-todo
 ```
 
 
-To run a production bundle:
+To run production bundle:
 
 ```sh
 node dist/apps/node-todo/main.js
 ```
 
 ## Run Docker
-To run in docker container:
+
+1. Create production bundle:
 
 ```sh
-docker compose up --build
+npx nx build node-todo
+```
+
+2. Build Docker Image:
+
+```sh
+docker build -f Dockerfile.node-todo -t node-todo .
+```
+
+3. Run Docker image:
+
+```sh
+docker run -d -p 3000:3000 node-todo
 ```
