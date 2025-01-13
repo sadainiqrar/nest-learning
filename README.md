@@ -20,7 +20,7 @@ npx nx build node-todo
 ```
 
 
-To create a production bundle:
+To run a production bundle:
 
 ```sh
 node dist/apps/node-todo/main.js
